@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 module Sidekiq
-  def self.perform_async(klass, *arguments, queue: 'default', at: nil)
+  def self.perform_async(klass, *arguments, **kwargs)
+    queue = kwargs.delete(:queue) || 'default'
+    at = kwargs.delete(:at)
+    arguments.push(kwargs)
+
     klass = klass.to_s.camelize
 
     args = ActiveJob::Base.new.serialize.merge(

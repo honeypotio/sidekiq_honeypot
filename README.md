@@ -28,6 +28,10 @@ define custom queue (default queue is 'default'):
 
     Sidekiq.perform_async(:my_class, arg1, arg2, queue: :low)
 
+keyword args are also supported:
+
+    Sidekiq.perform_async(:my_class, 5, admin: true, queue: :low)
+
 schedule job at certain time:
 
     Sidekiq.perform_async(:my_class, arg1, arg2, queue: :low, at: Date.tomorrow.midnight)
