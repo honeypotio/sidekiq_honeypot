@@ -1,4 +1,4 @@
-# sidekiq-honeypot
+# sidekiq_honeypot
 
 This gem is a plugin to excon gem https://github.com/mperham/sidekiq .
 
