@@ -13,7 +13,7 @@ module Sidekiq
     push_args = {
       'class' => ActiveJob::QueueAdapters::SidekiqAdapter::JobWrapper,
       'wrapped' => klass,
-      'queue' => queue,
+      'queue' => queue.to_s,
       'args' => [args]
     }
 
