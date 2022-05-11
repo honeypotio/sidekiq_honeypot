@@ -1,6 +1,6 @@
 # sidekiq_honeypot
 
-This gem is a plugin to excon gem https://github.com/mperham/sidekiq .
+This gem is a plugin to sidekiq gem https://github.com/mperham/sidekiq .
 
 This gem allows enqueueing jobs in sidekiq without defining their classes.
 
