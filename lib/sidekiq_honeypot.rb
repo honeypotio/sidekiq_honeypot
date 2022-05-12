@@ -8,10 +8,9 @@ module Sidekiq
 
     klass = klass.to_s.camelize
 
-    args = ActiveJob::Base.new.serialize.merge(
+    args = ActiveJob::Base.new(arguments).serialize.merge(
       'job_class' => klass,
-      'queue_name' => queue.to_s,
-      'arguments' => arguments
+      'queue_name' => queue.to_s
     )
 
     push_args = {
