@@ -4,11 +4,10 @@ module Sidekiq
   def self.perform_async(klass, *arguments, **kwargs)
     queue = kwargs.delete(:queue) || 'default'
     at = kwargs.delete(:at)
-    arguments.push(kwargs) unless kwargs.empty?
 
     klass = klass.to_s.camelize
 
-    args = ActiveJob::Base.new(*arguments).serialize.merge(
+    args = ActiveJob::Base.new(*arguments, **kwargs).serialize.merge(
       'job_class' => klass,
       'queue_name' => queue.to_s
     )
