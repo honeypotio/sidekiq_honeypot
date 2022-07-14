@@ -7,6 +7,25 @@ module Sidekiq
 
     klass = klass.to_s.camelize
 
+    arguments.push(kwargs) unless kwargs.empty?
+
+    push_args = {
+      'class' => klass,
+      'queue' => queue.to_s,
+      'args' => arguments
+    }
+
+    push_args['at'] = at.to_f if at
+
+    Sidekiq::Client.push(push_args)
+  end
+
+  def self.perform_later(klass, *arguments, **kwargs)
+    queue = kwargs.delete(:queue) || 'default'
+    at = kwargs.delete(:at)
+
+    klass = klass.to_s.camelize
+
     args = ActiveJob::Base.new(*arguments, **kwargs).serialize.merge(
       'job_class' => klass,
       'queue_name' => queue.to_s

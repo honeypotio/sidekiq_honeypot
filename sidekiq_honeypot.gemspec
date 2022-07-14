@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'sidekiq_honeypot'
-  spec.version       = '0.0.6'
+  spec.version       = '1.0.0'
   spec.authors       = ['Andrzej Trzaska']
   spec.email         = ['atrzaska2@gmail.com']
 
